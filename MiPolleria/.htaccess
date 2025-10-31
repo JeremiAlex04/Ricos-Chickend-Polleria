@@ -1,0 +1,12 @@
+# Activa el motor de reescritura de Apache
+RewriteEngine On
+
+# Si la petición NO es para un archivo existente...
+RewriteCond %{REQUEST_FILENAME} !-f
+# Y si la petición NO es para un directorio existente...
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# ...entonces, redirige la petición a index.php,
+# pasando la URL original como un parámetro 'url'.
+# [L] significa que es la última regla a aplicar.
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
